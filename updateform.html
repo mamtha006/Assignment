@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UPDATE FORM JS</title>
+</head>
+
+<body>
+    <h1>Update Password</h1>
+    <form id="form">
+        <div>
+            <p>NEW PASSWORD</p>
+            <label for="password"></label>
+            <input id="password" type="password" placeholder="Create new password" />
+            <p id="passworderror"></p>
+        </div>
+        <div>
+            <p>CONFIRM PASSWORD</p>
+            <label for="password2"></label>
+            <input id="password2" type="password" placeholder="Confirm password" />
+            <p id="password2error"></p>
+        </div>
+
+        <button>Update</button>
+    </form>
+
+    <script>
+          const form = document.getElementById("form");
+
+          const passwordElement = document.getElementById("password");
+          const password2Element = document.getElementById("password2");
+
+          const passwordErrorElement = document.getElementById("passworderror");
+          const password2ErrorElement = document.getElementById("password2error");
+
+          passwordElement.addEventListener("blur", (e) => {
+            if (e.target.value === "") {
+                passwordErrorElement.textContent = "Required*";
+            }
+            else {
+                passwordErrorElement.textContent = "";
+            }
+        })
+
+        password2Element.addEventListener("blur", (e) => {
+            if (e.target.value === "") {
+                password2ErrorElement.textContent = "Required*";
+            }
+            else {
+                password2ErrorElement.textContent = "";
+            }
+        })
+
+        function validation(a,b){
+            if(b===a){
+                password2ErrorElement.textContent = "";
+            }
+            else{
+                password2ErrorElement.textContent="Password must be same";
+            }
+        }
+
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+            if (validation(passwordElement.value,password2Element.value)) {
+                console.log("Form submitted");
+            }
+
+            form.reset();
+        })
+
+    </script>
+</body>
+
+</html>
